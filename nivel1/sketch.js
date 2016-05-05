@@ -26,7 +26,7 @@ function preload() {
 function setup() {
 
   createCanvas(632, 755);
-  GRAVITY = 0.3;
+  GRAVITY = 0.30;
 
   fondo = createSprite(width * 0.50, height * 0.50);
   fondo.addImage(fond);
