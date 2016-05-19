@@ -1,4 +1,4 @@
-//flappy bird-like
+
 //mouse click or x to flap
 
 var GRAVITY = 0;
@@ -129,8 +129,12 @@ function mousePressed() {
   if (gameOver)
     newGame();
   bird.velocity.y = FLAP;
+<<<<<<< HEAD
   
 
   
   
 }
+=======
+}
+>>>>>>> origin/master
