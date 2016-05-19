@@ -1,6 +1,6 @@
 
 var GRAVITY = 0;
-var FLAP = 0;
+
 var GROUND_Y = 950;
 var MIN_OPENING = 300;
 var nave, ground;
@@ -17,7 +17,7 @@ function setup() {
   naveImg = loadImage("assets/nave.png");
 
   groundImg = loadImage("assets/flappy_ground.png");
-  bgImg = loadImage("assets/flappy_bg.png");
+  bgImg = loadImage("assets/fondo.png");
   metImg = loadImage("assets/met.png");
 
   nave = createSprite(width*.5, height*.5, 40, 40);
@@ -25,8 +25,8 @@ function setup() {
   
   nave.velocity.x = 10;
   
-  meteoro.setCollider("circle", 0, 0, 10);
-  meteoro.addImage(naveImg);
+  nave.setCollider("circle", 0, 0, 10);
+  nave.addImage(naveImg);
 
   ground = createSprite(800 / 2, GROUND_Y + 200); //image 800x200
   ground.addImage(groundImg);
@@ -126,9 +126,5 @@ function newGame() {
 function mousePressed() {
   if (gameOver)
     newGame();
-  nave.velocity.y = FLAP;
-  
-
-  
   
 }
