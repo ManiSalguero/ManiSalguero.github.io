@@ -15,7 +15,6 @@ var GRAVITY;
 //of your sketch otherwise they may appear with a little delay
 function preload() {
   fond = loadImage("assets/fondo-01.png");
-  rectMode(CORNER);
 
   //create an animation from a sequence of numbered images
   //pass the first and the last file name and it will try to find the ones in between
@@ -26,7 +25,7 @@ function preload() {
 function setup() {
 
   createCanvas(632, 755);
-  GRAVITY = 0.30;
+  GRAVITY = 0.5;
 
   fondo = createSprite(width * 0.50, height * 0.50);
   fondo.addImage(fond);
