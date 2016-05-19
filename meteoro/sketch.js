@@ -1,4 +1,4 @@
-//flappy bird-like
+
 //mouse click or x to flap
 
 var GRAVITY = .3;
