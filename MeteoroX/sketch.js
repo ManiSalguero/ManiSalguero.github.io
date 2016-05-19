@@ -1,6 +1,5 @@
 
 var GRAVITY = 0;
-
 var GROUND_Y = 950;
 var MIN_OPENING = 300;
 var nave, ground;
@@ -102,6 +101,11 @@ function draw() {
   drawSprites(mets);
   drawSprite(ground);
   drawSprite(nave);
+ 
+ textSize(18);
+ fill(255);
+ text("Puntaje:",width*.99+90, height*.05);
+ 
  
 }
 
