@@ -14,11 +14,11 @@ var naveImg, metImg, groundImg, bgImg;
 function setup() {
   createCanvas(800, 800);
 
-  naveImg = loadImage("assets/flappy_bird.png");
+  naveImg = loadImage("assets/nave.png");
 
   groundImg = loadImage("assets/flappy_ground.png");
   bgImg = loadImage("assets/flappy_bg.png");
-  metImg = loadImage("assets/flappy_pipe.png");
+  metImg = loadImage("assets/met.png");
 
   nave = createSprite(width*.5, height*.5, 40, 40);
   nave.rotateToDirection = false;
