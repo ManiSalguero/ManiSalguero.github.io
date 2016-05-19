@@ -1,39 +1,37 @@
-//flappy bird-like
-//mouse click or x to flap
 
 var GRAVITY = 0;
 var FLAP = 0;
 var GROUND_Y = 950;
 var MIN_OPENING = 300;
-var bird, ground;
-var pipes;
-var pipes2;
+var nave, ground;
+var mets;
+
 var gameOver;
 
-var birdImg, pipeImg, groundImg, bgImg;
+var naveImg, metImg, groundImg, bgImg;
 
 
 function setup() {
   createCanvas(800, 800);
 
-  birdImg = loadImage("assets/flappy_bird.png");
+  naveImg = loadImage("assets/flappy_bird.png");
 
   groundImg = loadImage("assets/flappy_ground.png");
   bgImg = loadImage("assets/flappy_bg.png");
-  pipeImg = loadImage("assets/flappy_pipe.png");
+  metImg = loadImage("assets/flappy_pipe.png");
 
-  bird = createSprite(width*.5, height*.5, 40, 40);
-  bird.rotateToDirection = false;
+  nave = createSprite(width*.5, height*.5, 40, 40);
+  nave.rotateToDirection = false;
   
-  bird.velocity.x = 10;
+  nave.velocity.x = 10;
   
-  bird.setCollider("circle", 0, 0, 10);
-  bird.addImage(birdImg);
+  meteoro.setCollider("circle", 0, 0, 10);
+  meteoro.addImage(naveImg);
 
   ground = createSprite(800 / 2, GROUND_Y + 200); //image 800x200
   ground.addImage(groundImg);
 
-  pipes = new Group();
+  mets = new Group();
   gameOver = true;
   updateSprites(false);
 
@@ -48,49 +46,49 @@ function draw() {
   if (!gameOver) {
 
     if (keyWentDown("x"))
-      bird.velocity.y = mouseY;
+      nave.velocity.y = mouseY;
 
-    bird.velocity.y += GRAVITY;
+    nave.velocity.y += GRAVITY;
 
     
-      bird.position.y = mouseY;
+      nave.position.y = mouseY;
 
-    if (bird.position.y + bird.height / 2 > GROUND_Y)
+    if (nave.position.y + nave.height / 2 > GROUND_Y)
       die();
 
-    if (bird.overlap(pipes))
+    if (nave.overlap(mets))
       die();
 
 
 
-    //spawn pipes
+    //spawn mets
     if (frameCount % 60 == 0) {
-      var pipeH = random(850, 2000);
-      var pipe = createSprite(bird.position.x + width, GROUND_Y - pipeH / 2 + 1 + 100, 80, pipeH);
-      pipe.addImage(pipeImg);
-      pipe.scale= random(0,1.5);
-      pipe.duplicate
-      pipe.velocity.x=random(2,10);
-      pipe.rotate= random(0,360);
-      pipes.add(pipe);
+      var metH = random(850, 2000);
+      var met = createSprite(nave.position.x + width, GROUND_Y - metH / 2 + 1 + 100, 80, metH);
+      met.addImage(metImg);
+      met.scale= random(0,1.5);
+      met.duplicate
+      met.velocity.x=random(2,10);
+      met.rotate= random(0,360);
+      mets.add(met);
 
       //top pipe
-      if (pipeH < 200) {
-        pipeH = height - (height - GROUND_Y) - (pipeH + MIN_OPENING);
-        pipe = createSprite(bird.position.x + width, pipeH / 2 - 100, 80, pipeH);
-        pipe.mirrorY(-1);
-        pipe.addImage(pipeImg);
-        pipes.add(pipe);
+      if (metH < 200) {
+        metH = height - (height - GROUND_Y) - (metH + MIN_OPENING);
+        met = createSprite(nave.position.x + width, metH / 2 - 100, 80, metH);
+        met.mirrorY(-1);
+        met.addImage(metImg);
+        mets.add(met);
       }
     }
 
-    //get rid of passed pipes
-    for (var i = 0; i < pipes.length; i++)
-      if (pipes[i].position.x < bird.position.x - width / 2)
-        pipes[i].remove();
+    //get rid of passed mets
+    for (var i = 0; i < mets.length; i++)
+      if (mets[i].position.x < nave.position.x - width / 2)
+        mets[i].remove();
   }
 
-  camera.position.x = bird.position.x + width / 4;
+  camera.position.x = nave.position.x + width / 4;
 
   //wrap ground
   if (camera.position.x > ground.position.x - ground.width + width / 2)
@@ -101,9 +99,9 @@ function draw() {
   image(bgImg, 0, GROUND_Y - 1090);
   camera.on();
 
-  drawSprites(pipes);
+  drawSprites(mets);
   drawSprite(ground);
-  drawSprite(bird);
+  drawSprite(nave);
  
 }
 
@@ -115,12 +113,12 @@ function die() {
 }
 
 function newGame() {
-  pipes.removeSprites();
+  mets.removeSprites();
   gameOver = false;
   updateSprites(true);
-  bird.position.x = mouseX;
-  bird.position.y = mouseY;
-  bird.velocity.y = 0;
+  nave.position.x = mouseX;
+  nave.position.y = mouseY;
+  nave.velocity.y = 0;
   ground.position.x = 800 / 2;
   ground.position.y = GROUND_Y + 200;
 }
@@ -128,7 +126,7 @@ function newGame() {
 function mousePressed() {
   if (gameOver)
     newGame();
-  bird.velocity.y = FLAP;
+  nave.velocity.y = FLAP;
   
 
   
