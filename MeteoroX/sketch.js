@@ -128,7 +128,7 @@ function newGame() {
   updateSprites(true);
   nave.position.x = mouseX;
   nave.position.y = mouseY;
-  nave.velocity.y = 5;
+  nave.velocity.y = 10;
   ground.position.x = 800 / 2;
   ground.position.y = GROUND_Y + 200;
 }
