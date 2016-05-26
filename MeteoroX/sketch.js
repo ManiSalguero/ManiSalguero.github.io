@@ -24,13 +24,20 @@ function setup() {
   
   nave.velocity.x = 10;
   
-  nave.setCollider("circle", 0, 0, 10);
+  nave.setCollider("rectangle", 20, -12, 100, 50);
+  nave.debug=true;
   nave.addImage(naveImg);
 
-  ground = createSprite(800 / 2, GROUND_Y + 200); //image 800x200
+  ground = createSprite(800 / 2); //image 800x200
   ground.addImage(groundImg);
 
+ 
+
   mets = new Group();
+  
+  
+  
+  
   gameOver = true;
   updateSprites(false);
 
@@ -70,6 +77,9 @@ function draw() {
       met.velocity.x=random(2,10);
       met.rotate= random(0,360);
       mets.add(met);
+met.setCollider("circle", 0, 0, 35);
+  met.debug=true;
+
 
       //top pipe
       if (metH < 200) {
@@ -89,23 +99,19 @@ function draw() {
 
   camera.position.x = nave.position.x + width / 4;
 
-  //wrap ground
-  if (camera.position.x > ground.position.x - ground.width + width / 2)
-    ground.position.x += ground.width;
+  
+  if (camera.position.x)
+    
 
   background(98,105,124);
   camera.off();
-  image(bgImg, 0, GROUND_Y - 1090);
+  image(bgImg, 0);
   camera.on();
 
   drawSprites(mets);
-  drawSprite(ground);
   drawSprite(nave);
  
- textSize(18);
- fill(255);
- text("Puntaje:",width*.99+90, height*.05);
- 
+
  
 }
 
@@ -122,7 +128,7 @@ function newGame() {
   updateSprites(true);
   nave.position.x = mouseX;
   nave.position.y = mouseY;
-  nave.velocity.y = 0;
+  nave.velocity.y = 5;
   ground.position.x = 800 / 2;
   ground.position.y = GROUND_Y + 200;
 }
