@@ -24,7 +24,7 @@ function setup() {
   nave.velocity.x = 10;
 
   nave.setCollider("rectangle", 20, -12, 100, 50);
-  nave.debug = true;
+  nave.debug = false;
   nave.addImage(naveImg);
 
   ground = createSprite(800 / 2); //image 800x200
@@ -77,7 +77,7 @@ function draw() {
       met.rotate = random(0, 360);
       mets.add(met);
       met.setCollider("circle", 0, 0, 35);
-      met.debug = true;
+      met.debug = false;
 
 
       //top pipe
